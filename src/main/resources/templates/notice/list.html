@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>通知公告</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+	<div class="box">
+		<div class="well well-lg">
+			<div id="addNotice">
+				<a class="btn btn-primary" href="/notice/add">发布公告</a>
+			</div>
+		</div>
+		<table class="table table-bordered table-hover">
+			<tr>
+				<th class="text-center">#</th>
+				<th class="text-center">标题</th>
+				<th class="text-center">内容</th>
+				<th class="text-center">权限</th>				
+				<th class="text-center">发布日期</th>
+				<th class="text-center">操作</th>
+			</tr>
+			<tr class="text-center" th:each="notice:${notices}">
+				<td></td>
+				<td th:text="${notice.title}"></td>
+				<td th:text="${notice.content}"></td>
+				<td th:switch="${notice.role}">
+					<p th:case="0">教师/学生</p>
+					<p th:case="1">教师</p>
+					<p th:case="2">学生</p>
+				</td>
+				<td th:text="${notice.updtime}"></td>
+				<td>
+					<div class="btn-group" role="group" aria-label="...">
+						<a class="btn btn-default  btn-sm" aria-label="Left Align" th:href="@{'/notice/edit?id='+${notice.id}}">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+						</a>
+						<a class="btn btn-default  btn-sm" aria-label="Left Align" th:href="'javascript:confirmDelete('+${notice.id}+')'">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</a>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			for(var i = 1;i<$('table tr').length;i++){
+	            $('table tr:eq('+i+') td:first').text(i);
+	        }
+		});
+        
+		function confirmDelete(id) {
+			if (confirm("确定要删除" + id + "吗？")) {
+				location.href = '/notice/delete?id=' + id
+			}
+		}
+	</script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>

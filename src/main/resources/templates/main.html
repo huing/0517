@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title> 学生信息管理系统</title>
+<link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+	<div class="header">
+		<h1>Welcome,<span id="Account" th:text="${account}"></span></h1>
+		<div class="nav">
+	    	<a target="pageBox" href="/other/1">学校简介</a>
+	    	<a target="pageBox" href="/other/2">文化标识</a>
+            <a target="pageBox" href="/other/3">学院信息</a>
+            <a target="pageBox" href="/other/4">菁菁校园</a>
+            <a target="pageBox" href="/other/5">联系我们</a>
+	    </div>	
+		<div class="user">
+			<a th:href="'javascript:confirmLogOut()'">退出</a>
+		</div>	
+		<p id="Role" hidden="hidden" th:text="${role}"></p>
+		<p id="Uno" hidden ="hidden" th:text="${uno}"></p>
+	</div>
+	<div class="main">
+		<ul class="left-side">
+			<li>
+				<ul id="studentUL">				
+					<li class="menu-title"><a target="pageBox" th:href="@{'/score?uno=' + ${uno}}"> 
+						<i class=" fa fa-circle-thin"></i>&nbsp;&nbsp;个人成绩 </a></li>
+					<li class="menu-title"><a target="pageBox" th:href="@{'/curriculaVariable?uno=' + ${uno}}">
+						<i class=" fa fa-circle-thin"></i>&nbsp;&nbsp;选课 </a></li>
+					<li class="menu-title"><a target="pageBox" th:href="@{'/courseShow?uno=' + ${uno}}">
+						<i class=" fa fa-circle-thin"></i>&nbsp;&nbsp;已选课 </a></li>
+					<li class="menu-title"><a target="pageBox" th:href="@{'/notice/show?role=' + ${role}}">
+						<i class=" fa fa-circle-thin"></i>&nbsp;&nbsp;公告列表 </a></li>	
+				</ul>
+			</li>		
+			<li>
+				<ul id="teacherUL">												
+					<li class="menu-title"><a target="pageBox" th:href="@{'/teacher/list?uno=' + ${uno}}"> 
+						<i class=" fa fa-circle-thin"></i>&nbsp;&nbsp;学生成绩</a></li>
+					<li class="menu-title"><a target="pageBox" th:href="@{'/notice/show?role=' + ${role}}">
+						<i class=" fa fa-circle-thin"></i>&nbsp;&nbsp;公告列表 </a></li>
+				</ul>
+			</li>			
+			<li>
+				<ul id="adminUL">	
+					<li class="menu-title"><a target="pageBox" href="/notice/list">
+						<i class=" fa fa-circle-thin"></i>&nbsp;&nbsp;公告信息 </a></li>
+										
+					<li class="menu-title"><a target="pageBox" href="/score/list"> 
+						<i class=" fa fa-circle-thin"></i>&nbsp;&nbsp;成绩信息 </a></li>
+						
+					<li class="menu-title"><a target="pageBox" href="/student/list"> 
+						<i class=" fa fa-circle-thin"></i>&nbsp;&nbsp;学生信息 </a></li>
+						
+					<li class="menu-title"><a target="pageBox" href="/course/list"> 
+						<i class=" fa fa-circle-thin"></i>&nbsp;&nbsp;课程信息 </a></li>
+						
+					<li class="menu-title"><a target="pageBox" href="/user/list"> 
+						<i class=" fa fa-circle-thin"></i>&nbsp;&nbsp;用户信息 </a></li>	
+				</ul>
+			</li>
+			<li>
+				<ul>
+					<li class="menu-title"><a target="pageBox" th:href="@{'/user/detail?uno=' + ${uno}}"> 
+						<i class=" fa fa-circle-thin"></i>&nbsp;&nbsp;个人信息 </a></li>
+				</ul>
+			</li>				
+		</ul>	
+		<div class="right-side">
+			<iframe name="pageBox" src="/image/method-draw-image.svg" ></iframe>
+			<div class="footer">学生成绩管理系统 ©2018 信阳师范学院</div>
+		</div>
+	</div>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/admin.js"></script>
+	<script type="text/javascript">	
+		var studentUL = document.getElementById("studentUL");
+		var teacherUL = document.getElementById("teacherUL");
+		var adminUL = document.getElementById("adminUL");
+		
+		if($("#Role",top.document).text() == 0){	
+			if (studentUL.parentNode) {
+				 studentUL.parentNode.removeChild(studentUL);
+        	 }
+			 if (teacherUL.parentNode) {
+				 teacherUL.parentNode.removeChild(teacherUL);
+			 }
+        } else if($("#Role",top.document).text() == 1){     	 
+ 			 if (studentUL.parentNode) {
+ 				 studentUL.parentNode.removeChild(studentUL);
+         	 }
+ 			if (adminUL.parentNode) {
+ 				adminUL.parentNode.removeChild(adminUL);
+        	 }
+		}else {
+			if (adminUL.parentNode) {
+ 				adminUL.parentNode.removeChild(adminUL);
+        	 }
+			if (teacherUL.parentNode) {
+				 teacherUL.parentNode.removeChild(teacherUL);
+			 }
+		}
+		function confirmLogOut() {
+			if (confirm("确定要退出吗？")) {
+				location.href = '/logout'
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>学生信息</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+<div class="box">
+	<div class="well well-lg">
+		<div >
+			<a class="btn btn-primary" href="/student/add">添加学生信息</a>
+		</div>
+	</div>
+	<table class="table table-bordered table-hover">
+		<tr>
+			<th class="text-center">序号</th>
+			<th class="text-center">学号</th>
+			<th class="text-center">姓名</th>
+			<th class="text-center">院系</th>
+			<th class="text-center">班级</th>
+			<th class="text-center">年级</th>
+			<th class="text-center">更新时间</th>
+			<th class="text-center">操作</th>
+		</tr>
+		<tr class="text-center" th:each="stu:${students}">
+			<td ></td>
+			<td th:text="${stu.sno}"></td>
+			<td th:text="${stu.sname}"></td>
+			<td th:text="${stu.dept}"></td>
+			<td th:text="${stu.sc}"></td>
+			<td th:text="${stu.grade}"></td>
+			<td th:text="${stu.updtime}"></td>
+			<td id="td">
+				<div class="btn-group" role="group" aria-label="...">
+					<a class="btn btn-default  btn-sm" aria-label="Left Align" th:href="@{'/student/edit?id='+${stu.id}}">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					</a>
+					<a class="btn btn-default  btn-sm" aria-label="Left Align" th:href="'javascript:confirmDelete('+${stu.id}+')'">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</a>
+				</div>
+			</td>
+		</tr>
+	</table>
+	</div>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		function confirmDelete(id) {
+			if (confirm("确定要删除" + id + "吗？")) {
+				location.href = '/student/delete?id=' + id
+			}
+		}
+		$(function(){
+			for(var i = 1;i<$('table tr').length;i++){
+	            $('table tr:eq('+i+') td:first').text(i);
+	        }
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>登录 --- 学生成绩管理系统</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/signin.css">
+</head>
+<body >
+	<div class="container">
+		<form class=" form-signin" action="/login" method="post">
+			<h2 class="form-signin-heading">请登陆</h2>
+			<input type="text" class="form-control" name="uno" placeholder="请输入账号" required autofocus> 
+			<input type="password" class="form-control" name="password" placeholder="请输入密码" required> 			
+			<label class="radio-inline">
+				<input type="radio" name="role" value="2">学生
+			</label> 
+			<label class="radio-inline"> 
+				<input type="radio" name="role" value="1">老师
+			</label> 
+			<label class="radio-inline"> 
+				<input type="radio" name="role" value="0">管理员
+			</label>
+			<div class="checkbox">
+				<label> <input type="checkbox" value="remember-me"> Remember me </label>
+			</div>
+			<!-- 当信息出错时，显示<p>标签 -->
+			<p style="color:red;text-align:center;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		</form>
+	</div>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+</body>
+</html>

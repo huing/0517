@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>用户信息</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+	<div class="well well-lg">
+		<div >
+			<a class="btn btn-primary" href="/user/add">添加用户信息</a>
+		</div>
+	</div>
+	<table class="table table-bordered table-hover">
+		<tr>
+			<th class="text-center">序号</th>
+			<th class="text-center">帐号</th>
+			<th class="text-center">用户名</th>
+			<th class="text-center">密码</th>
+			<th class="text-center">邮箱</th>
+			<th class="text-center">性别</th>
+			<th class="text-center">角色</th>
+			<th class="text-center">更新时间</th>
+			<th class="text-center">操作</th>
+		</tr>
+		<tr class="text-center" th:each="user:${users}">
+			<td ></td>
+			<td th:text="${user.uno}"></td>
+			<td th:text="${user.account}"></td>
+			<td th:text="${user.password}"></td>
+			<td th:text="${user.email}"></td>
+			<td th:switch="${user.gender}">
+				<p th:case="0">男</p>
+				<p th:case="1">女</p>
+			</td>
+			<td th:switch="${user.role}">
+				<p th:case="0">管理员</p>
+				<p th:case="1">教师</p>
+				<p th:case="2">学生</p>
+			</td>		
+			<td th:text="${user.updtime}"></td>
+			<td id="td">
+				<div class="btn-group" role="group" aria-label="...">
+					<a class="btn btn-default  btn-sm" aria-label="Left Align" th:href="@{'/user/edit?id='+${user.id}}">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					</a>
+					<a class="btn btn-default  btn-sm" aria-label="Left Align" th:href="'javascript:confirmDelete('+${user.id}+')'">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</a>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		function confirmDelete(id) {
+			if (confirm("确定要删除" + id + "吗？")) {
+				location.href = '/user/delete?id=' + id
+			}
+		}
+		$(function(){
+			for(var i = 1;i<$('table tr').length;i++){
+	            $('table tr:eq('+i+') td:first').text(i);
+	        }
+		});
+	</script>
+</body>
+
+</html>

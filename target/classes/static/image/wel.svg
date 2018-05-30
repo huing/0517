@@ -1,0 +1,62 @@
+<!-- <?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"> -->
+
+<svg width="100%" height="100%" version="1.1"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
+  <rect width="100%" height="100%" fill="none" />
+  
+  <text x="150" y="250" font-family="Verdana" font-size="60" fill="white"
+		stroke="black" stroke-width="2">  Hello,friends! </text>
+		
+  <path id="theMotionPath"
+		d="M10,110 A120,120 -45 0,1 110 10 A120,120 -45 0,1 10,110"
+		stroke="#fff" stroke-width="2" fill="none" /> 
+   <path id="svg_1"
+		d="m300.5,495c-74,-136 207,-68 94,-145c-113,-77 -20,281 -94,145z"
+		stroke="#fff" stroke-width="1.5" fill="none" />
+  <path id="svg_2"
+		d="m611.5,159c140,91 -174,136 -6,8c168,-128 -134,-99 6,-8z"
+		fill-opacity="null" stroke-opacity="null" stroke-width="1.5"
+		stroke="#fff" fill="none" />
+  <path id="svg_3" 
+		d="m556.37245,414.027742c15.991457,28.198902 227.434052,-9.921836 194.562724,-40.731748c-32.871328,-30.809912 -210.554181,12.532845 -194.562724,40.731748z"
+		fill-opacity="null" stroke-opacity="null" stroke-width="1.5"
+		stroke="#fff" fill="none" />
+    
+    
+    <circle cx="10" cy="110" r="5" fill="red">
+        <animateMotion dur="6s" repeatCount="indefinite">
+           <mpath xlink:href="#theMotionPath" />
+        </animateMotion>
+    </circle> 
+  
+    <circle cx="10" cy="110" r="5" fill="red">
+        <animateMotion dur="6s" repeatCount="indefinite">
+           <mpath xlink:href="#svg_1" />
+        </animateMotion>
+    </circle>
+    
+    <circle cx="10" cy="110" r="5" fill="red">
+        <animateMotion dur="6s" repeatCount="indefinite">
+           <mpath xlink:href="#svg_2" />
+        </animateMotion>
+    </circle>
+    
+    
+    <circle cx="10" cy="110" r="5" fill="red">
+        <animateMotion dur="6s" repeatCount="indefinite">
+           <mpath xlink:href="#svg_3" />
+        </animateMotion>
+    </circle>
+    <!-- 
+    <polygon points="60,30 90,90 30,90" fill="lightgrey">
+        <animateTransform attributeName="transform" attributeType="XML"
+		type="rotate" from="0 60 70" to="360 60 70" dur="10s"
+		repeatCount="indefinite" />
+    </polygon> -->
+    
+</svg>
+
+

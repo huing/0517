@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>成绩列表</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+	<div class="box">
+		<div class="well well-lg">
+			<h5>成绩信息</h5>
+		</div>
+		<div class="well well-lg">
+			<table class="table table-bordered table-hover"
+				style="font-size: small;">
+				<tr>
+					<th class="text-center">#</th>
+					<th class="text-center">学号</th>
+					<th class="text-center">姓名</th>
+					<th class="text-center">院系</th>
+					<th class="text-center">班级</th>
+					<th class="text-center">年级</th>
+					<th class="text-center">课程名</th>
+					<th class="text-center">必选修</th>
+					<th class="text-center">分数</th>
+					<th class="text-center">通过</th>
+					<th class="text-center">所选课教师</th>
+					<th class="text-center">所选课院系</th>
+					<th class="text-center">学期</th>
+				</tr>
+				<tr class="text-center" th:each="score:${scores}">
+					<td></td>
+					<td th:text="${score[0]}"></td>
+					<td th:text="${score[1]}"></td>
+					<td th:text="${score[2]}"></td>
+					<td th:text="${score[3]}"></td>
+					<td th:text="${score[4]}"></td>
+					<td th:text="${score[5]}"></td>
+					<td th:switch="${score[6]}">
+						<p th:case="0">必修</p>
+						<p th:case="1">选修</p>
+					</td>
+					<td th:text="${score[7]}"></td>
+					<td th:text="${score[8]}"></td>
+					<td th:text="${score[9]}"></td>
+					<td th:text="${score[10]}"></td>
+					<td th:switch="${score[11]}">
+						<p th:case="0">上</p>
+						<p th:case="1">下</p>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			for (var i = 1; i < $('table tr').length; i++) {
+				$('table tr:eq(' + i + ') td:first').text(i);
+			}
+		});
+	</script>
+</body>
+
+</html>

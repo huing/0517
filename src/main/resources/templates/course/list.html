@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>课程信息</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+	<div class="well well-lg">
+		<div id="addNotice">
+			<a class="btn btn-primary" href="/course/add">添加课程信息</a>
+		</div>
+		<p style="color:red;text-align:center;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+	</div>
+	<table class="table table-bordered table-hover" style="font-size: small;">
+		<tr>
+			<th class="text-center">#</th>
+			<th class="text-center">工号</th>
+			<th class="text-center">姓名</th>
+			<th class="text-center">课程</th>
+			<th class="text-center">院系</th>
+			<th class="text-center">班级</th>
+			<th class="text-center">年级</th>
+			<th class="text-center">学期</th>
+			<th class="text-center">更新时间</th>
+			<th class="text-center">操作</th>
+		</tr>
+		<tr class="text-center" th:each="course:${courses}">
+			<td ></td>
+			<td th:text="${course.tno}"></td>
+			<td th:text="${course.tname}"></td>
+			<td th:text="${course.cname}"></td>
+			<td th:text="${course.dept}"></td>
+			<td th:text="${course.sc}"></td>
+			<td th:text="${course.grade}"></td>
+			<td th:switch="${course.semester}">
+				<p th:case="0">上</p>
+				<p th:case="1">下</p>
+			</td>
+			<td th:text="${course.updtime}"></td>
+			<td id="td">
+				<div class="btn-group" role="group" aria-label="...">
+					<a class="btn btn-default btn-sm" aria-label="Left Align" th:href="@{'/course/edit?id='+${course.id}}">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					</a>
+					<a class="btn btn-default btn-sm" aria-label="Left Align" th:href="'javascript:confirmDelete('+${course.id}+')'">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</a>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		function confirmDelete(id) {
+			if (confirm("确定要删除" + id + "吗？")) {
+				location.href = '/course/delete?id=' + id
+			}
+		}
+		$(function(){
+			for(var i = 1;i<$('table tr').length;i++){
+	            $('table tr:eq('+i+') td:first').text(i);
+	        }
+		});
+	</script>
+</body>
+
+</html>

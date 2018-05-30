@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>选课信息</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+	<div class="box">
+		<div class="well well-lg">
+			<h5>选课信息</h5>
+		</div>
+		<div class="well well-lg">
+			<p style="color: red; text-align: center;" th:text="${scoremsg}"
+				th:if="${not #strings.isEmpty(scoremsg)}"></p>
+			<table class="table table-bordered table-hover">
+				<tr>
+					<th class="text-center">#</th>
+					<th class="text-center">工号</th>
+					<th class="text-center">姓名</th>
+					<th class="text-center">课程</th>
+					<th class="text-center">院系</th>
+					<th class="text-center">班级</th>
+					<th class="text-center">年级</th>
+					<th class="text-center">学期</th>
+					<th class="text-center">选课</th>
+				</tr>
+				<tr class="text-center" th:each="course:${courses}">
+					<td></td>
+					<td th:text="${course[1]}"></td>
+					<td th:text="${course[2]}"></td>
+					<td th:text="${course[3]}"></td>
+					<td th:text="${course[4]}"></td>
+					<td th:text="${course[5]}"></td>
+					<td th:text="${course[6]}"></td>
+					<td th:switch="${course[7]}">
+						<p th:case="0">上</p>
+						<p th:case="1">下</p>
+					</td>
+					<td id="td">
+						<div class="btn-group" role="group" aria-label="...">
+							<a class="btn btn-default  btn-sm" aria-label="Left Align" onClick="return confirm('确定要选此课吗？');" 
+								th:href="@{'/course/plus?tnoId='+${course[0]}+'&snoId='+${course[8]}+'&sno='+${course[9]}}"> 
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			for (var i = 1; i < $('table tr').length; i++) {
+				$('table tr:eq(' + i + ') td:first').text(i);
+			}
+		});
+	</script>
+</body>
+
+</html>

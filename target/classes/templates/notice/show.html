@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>通知公告</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+	<div class="box">
+		<div class="well well-lg">
+			<form id="form" class="form-inline" action="/nsearch" method="post">
+				<label for="inputText">搜索内容：</label>
+				<input type="text" name="keyword" class="form-control" placeholder="请输入搜索关键词">&nbsp;&nbsp;&nbsp;
+				<label>搜索字段：</label>
+				<select name="searchField" class="form-control">
+					<option value="0">标题</option>
+					<option value="1">内容</option>
+				</select>
+				<input type="submit" class="btn btn-default" value="搜索">
+			</form>
+		</div>
+		<table class="table table-bordered table-hover">
+			<tr>
+				<th class="text-center">#</th>
+				<th class="text-center">标题</th>
+				<th class="text-center">内容</th>
+				<th class="text-center">发布日期</th>
+				<th class="text-center">发布者</th>
+			</tr>
+			<tr class="text-center" th:each="notice:${notices}">
+				<td></td>
+				<td th:text="${notice[1]}"></td>
+				<td th:text="${notice[2]}"></td>
+				<td th:text="${notice[3]}"></td>
+				<td>administrator</td>
+			</tr>
+		</table>
+	</div>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+
+		$(function(){
+			for(var i = 1;i<$('table tr').length;i++){
+	            $('table tr:eq('+i+') td:first').text(i);
+	        }
+		});
+	</script>
+</body>
+
+</html>

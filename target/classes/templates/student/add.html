@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>添加学生信息</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="box">
+		<div class="well well-lg">
+			<form action="/student/insert" method="post" class="form-horizontal">
+				<input type="hidden" name="id">
+				<div class="form-group">
+					<label for="inputTitle" class="col-sm-2 control-label">学号</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" name="sno" id="inputTitle" placeholder="请输入学号">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputSname" class="col-sm-2 control-label">姓名</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" name="sname" id="inputSname" placeholder="请输入姓名">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputContent" class="col-sm-2 control-label">院系</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" name="dept" id="inputContent" placeholder="请输入院系">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputAuthor" class="col-sm-2 control-label">班级</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" name="sc" id="inputAuthor" placeholder="请输入班级">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputSclass" class="col-sm-2 control-label">年级</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" name="grade" id="inputSclass" placeholder="请输入年级">
+					</div>
+				</div>
+
+				
+				<input type="hidden" name="updtime">
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-2">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="submit" class="btn btn-primary">提交</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
